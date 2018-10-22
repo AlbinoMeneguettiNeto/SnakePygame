@@ -15,6 +15,9 @@ highscore = list()
 
 fps = 5
 pygame.init()
+a = pygame.image.load('icon.png')
+pygame.display.set_caption('Snake')
+pygame.display.set_icon(a)
 fpsClock = pygame.time.Clock()
 
 SWidth, SHeight = 640, 480
@@ -26,6 +29,7 @@ UP = (0, -1)
 DOWN = (0, 1)
 LEFT = (-1, 0)
 RIGHT = (1, 0)
+PAUSE = (0, 0)
 
 screen = pygame.display.set_mode((SWidth, SHeight), 0, 32)
 surface = pygame.Surface(screen.get_size())

@@ -1,6 +1,17 @@
 import Settings
 
 
+def my_quit():
+    Settings.pygame.quit()
+    Settings.sys.exit()
+
+
+def my_range(start, stop, step=1):
+    while start <= stop:
+        yield start
+        start += step
+
+
 def draw_box(surface, color, pos):
     r = Settings.pygame.Rect((pos[0], pos[1]), (Settings.GRIDSIZE, Settings.GRIDSIZE))
     Settings.pygame.draw.rect(surface, color, r)
@@ -9,7 +20,7 @@ def draw_box(surface, color, pos):
 def check_eat(snake, apple):
     if snake.get_head_position() == apple.position:
         snake.length += 1
-        Settings.points += 1
+        snake.points += 1
         apple.randomize()
 
 

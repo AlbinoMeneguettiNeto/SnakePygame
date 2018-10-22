@@ -1,24 +1,16 @@
-import sys
 import time
 import Settings
-import Snake
 import Apple
-import Menu
-
-
-def my_quit():
-    Settings.pygame.quit()
-    sys.exit()
 
 
 def game_loop():
-    snake = Snake.Snake()
+    snake = Settings.Menu.Snake.Snake()
     apple = Apple.Apple()
 
     while True:
         for event in Settings.pygame.event.get():
             if event.type == Settings.pygame.QUIT:
-                my_quit()
+                Settings.Functions.my_quit()
             elif event.type == Settings.pygame.KEYDOWN:
                 if event.key == Settings.pygame.K_UP:
                     snake.point(Settings.UP)
@@ -28,8 +20,11 @@ def game_loop():
                     snake.point(Settings.LEFT)
                 elif event.key == Settings.pygame.K_RIGHT:
                     snake.point(Settings.RIGHT)
+                elif event.key == Settings.pygame.K_SPACE:
+                    snake.pause()
+                    Settings.Menu.pause(snake)
 
-        Settings.surface.fill((0, 0, 0))
+        Settings.surface.fill(Settings.black)
         snake.move()
         Settings.Functions.check_eat(snake, apple)
         snake.draw(Settings.surface)
@@ -41,4 +36,4 @@ def game_loop():
 
 
 if __name__ == '__main__':
-    Menu.intro(game_loop, my_quit)
+    Settings.Menu.intro(game_loop, Settings.Functions.my_quit)

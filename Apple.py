@@ -1,8 +1,9 @@
 import Settings
+import Singleton
 
 
-class Apple(object):
-    def __init__(self):
+class Apple(Singleton.Singleton):
+    def init(self):
         self.position = (0, 0)
         self.color = Settings.red
         self.randomize()
